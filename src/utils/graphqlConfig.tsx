@@ -1,4 +1,4 @@
-import { GITHUB_TOKEN, GRAPHQL_SERVER_URL } from '../constants/graphqlConstants'
+import { GRAPHQL_SERVER_URL } from '../constants/graphqlConstants'
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 import { issuesTypeDefs } from '../queries/issues'
 import { setContext } from '@apollo/client/link/context';
@@ -12,7 +12,7 @@ export const getClient = () => {
         return {
           headers: {
             ...headers,
-            authorization: `Bearer ${GITHUB_TOKEN}`,
+            authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
           }
         }
     });
