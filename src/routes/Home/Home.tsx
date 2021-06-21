@@ -2,7 +2,7 @@ import * as React from 'react'
 import FilterBox from './components/FilterBox/FilterBox'
 import IssuesContainer from './components/IssuesContainer/IssuesContainer'
 
-const UserContainer = () => {
+const Home = () => {
     
     return (
         <>
@@ -12,4 +12,4 @@ const UserContainer = () => {
     )
 }
 
-export default UserContainer
+export default Home

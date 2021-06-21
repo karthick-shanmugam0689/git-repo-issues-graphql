@@ -65,7 +65,6 @@ export const getIssues = gql `
                 node {
                     ... on Issue {
                         id
-                        bodyHTML
                         state
                         title
                     }
@@ -77,23 +76,22 @@ export const getIssues = gql `
 `
 
 
-export const getCommentsOnIssues = gql `
+export const getCommentsOnIssue = gql `
     query(
-        $after: String
-        $id: String
+        $id: ID!
     ) {
         node(
             id: $id
         ) {
             ... on Issue {
+                title
+                bodyHTML
+                state
+                id
                 comments(
-                    first: 10
-                    after: $after
+                    first: 100
                 ) {
                     totalCount
-                    pageInfo {
-                        ...PageInfoFragment
-                    }
                     nodes {
                         id
                         bodyHTML
@@ -102,5 +100,4 @@ export const getCommentsOnIssues = gql `
             }
         }
     }
-    ${pageInfoFragment}
 `

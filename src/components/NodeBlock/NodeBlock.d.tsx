@@ -1,6 +1,6 @@
 export interface INodeBlockProps {
     id: string
-    title: string
+    title?: string
     bodyHTML: string
-    state: string
+    state?: string
 }

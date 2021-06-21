@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
+
+import { useApolloClient, ApolloClient, useQuery } from '@apollo/client'
+
 import { SearchContainer } from './style.FilterBox'
 import { STATUS_CONSTANTS } from './constants.FilterBox'
-import { useApolloClient, ApolloClient } from '@apollo/client'
+import { IFilter } from '../../../../types/filter.d'
 import { getFilterOptions } from '../../../../queries/filter'
 
 const FilterBox = () => {
 
-    const [searchText, setSearchText] = useState('')
+    const { data } = useQuery<IFilter, any>(getFilterOptions)
 
-    const [status, setStatus] = useState('')
+    const {filter} = data || {}
+
+    const [searchText, setSearchText] = useState(filter?.searchTerm || '')
+
+    const [status, setStatus] = useState(filter?.status || '')
 
     const client: ApolloClient<any> = useApolloClient()
 

@@ -12,4 +12,9 @@ export const IssuesListContainer = styled.div`
         margin-top: 20px;
         height: 40px;
     }
+
+    .list-item {
+        text-decoration: none;
+        color: inherit;
+    }
 `

@@ -4,7 +4,7 @@ export interface IPageInfo {
 }
 
 export interface IList {
-    pageInfo: IPageInfo
+    pageInfo?: IPageInfo
 }
 
 export interface INode {
@@ -20,6 +20,7 @@ export interface ICommentList extends IList {
 export interface IIssue extends INode {
     title: string
     state: string
+    comments?: ICommentList
 }
 
 export interface IIssueNode {
@@ -27,10 +28,14 @@ export interface IIssueNode {
 }
 
 export interface IIssueList extends IList {
-    issueCount: number
-    edges: [IIssueNode]
+    issueCount?: number
+    edges?: IIssueNode[]
 }
 
 export interface IIssuesSearch {
     search: IIssueList
+}
+
+export interface IIssueComments {
+    node: IIssue
 }

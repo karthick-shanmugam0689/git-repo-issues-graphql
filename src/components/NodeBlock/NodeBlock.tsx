@@ -5,7 +5,7 @@ import { NodeBlockContainer } from './style.NodeBlock'
 
 const NodeBlock = (props: INodeBlockProps) => {
 
-    const {title, state} = props
+    const {title, state, bodyHTML} = props
 
     return (
         <NodeBlockContainer>
@@ -15,6 +15,7 @@ const NodeBlock = (props: INodeBlockProps) => {
             <div className={`status ${state?.toLowerCase()}`}>
                 {state}
             </div>
+            <p className="body" dangerouslySetInnerHTML={{__html: bodyHTML}} />
         </NodeBlockContainer>
     )
 }
