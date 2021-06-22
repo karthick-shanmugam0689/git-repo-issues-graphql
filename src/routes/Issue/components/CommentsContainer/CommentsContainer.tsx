@@ -13,7 +13,7 @@ const CommentsContainer = (props: ICommentList) => {
                 <>
                     <div className="total-count">
                         {
-                            `${totalCount} issue(s) found`
+                            `${totalCount} comment(s) found`
                         }
                     </div>
                     {

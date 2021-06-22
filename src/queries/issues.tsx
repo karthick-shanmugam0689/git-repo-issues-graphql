@@ -33,9 +33,13 @@ export const issuesTypeDefs = gql `
         searchTerm: String
         status: String
     }
+    type Sort {
+        id: String
+    }
     extend type Query {
         search : IssueList
         filter: Filter
+        sort: Sort
     }
 `
 
@@ -67,12 +71,26 @@ export const getIssues = gql `
                         id
                         state
                         title
+                        bodyHTML
                     }
                 }
             }
         }
     }
     ${pageInfoFragment}
+`
+
+export const getIssue = gql `
+    query($id: String) {
+        node(id: $id) @client {
+            ... on Issue {
+                id
+                state
+                title
+                bodyHTML
+            }
+        }
+    }
 `
 
 

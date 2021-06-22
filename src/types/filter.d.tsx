@@ -4,3 +4,9 @@ export interface IFilter {
         status: string
     }
 }
+
+export interface IScroll {
+    scroll: {
+        id: string
+    }
+}

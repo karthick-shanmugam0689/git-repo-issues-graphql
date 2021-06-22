@@ -8,3 +8,11 @@ export const getFilterOptions = gql `
         }
     }
 `
+
+export const getScrollOptions = gql `
+    query {
+        scroll @client {
+            id
+        }
+    }
+`

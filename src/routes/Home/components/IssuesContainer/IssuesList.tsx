@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Link } from "react-router-dom";
 
 import { useQuery } from '@apollo/client'
 
@@ -8,14 +7,27 @@ import { IIssueNode, IIssuesSearch } from '../../../../types/issues.d'
 import { IIssuesListProps } from './IssuesContainer.d'
 import { IssuesListContainer } from './style.IssuesContainer'
 import NodeBlock from '../../../../components/NodeBlock/NodeBlock'
+import { IScroll } from '../../../../types/filter.d'
+import { getScrollOptions } from '../../../../queries/filter'
 
 const IssuesList = (props: IIssuesListProps) => {
 
     const { searchTerm, status } = props
 
+    const { data: scrollData } = useQuery<IScroll, any>(getScrollOptions)
+
+    React.useLayoutEffect(
+        () => {
+            if(scrollData?.scroll?.id) {
+                document.getElementById(scrollData.scroll.id)?.scrollIntoView({block: 'center', inline: 'center'})
+            }
+        },
+        [scrollData]
+    )
+
     const { data, loading, error, fetchMore } = useQuery<IIssuesSearch, any>(getIssues, {
         variables: {
-            query: `repo:facebook/react state:${status || ''} type:issue in:title ${searchTerm || ''}`,
+            query: `repo:facebook/react state:${status || ''} type:issue in:title ${searchTerm || ''} in:body ${searchTerm || ''}`,
             after: null,
         },
     })
@@ -65,9 +77,7 @@ const IssuesList = (props: IIssuesListProps) => {
                     </div>
                     {
                         data?.search?.edges && data?.search?.edges.map(edge => (
-                            <Link className="list-item" to={`/issue/${edge.node.id}`} key={edge.node.id}>
-                                <NodeBlock {...edge.node} />
-                            </Link>
+                            <NodeBlock {...edge.node} wrapBody={true} key={edge.node.id} showDetailLink={true} />
                         ))
                     }
                     {

@@ -5,6 +5,13 @@ import { IIssueProps } from './Issue.d'
 const Issue = (props: IIssueProps) => {
 
     const { issueId } = props.match.params
+
+    React.useLayoutEffect(
+        () => {
+            window.scrollTo(0, 0)
+        },
+        []
+    )
     
     return (
         <>

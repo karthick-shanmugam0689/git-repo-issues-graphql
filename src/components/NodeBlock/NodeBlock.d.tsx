@@ -3,4 +3,6 @@ export interface INodeBlockProps {
     title?: string
     bodyHTML: string
     state?: string
+    wrapBody?: boolean
+    showDetailLink?: boolean
 }

@@ -1,5 +1,5 @@
 import { GRAPHQL_SERVER_URL } from '../constants/graphqlConstants'
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
+import { ApolloClient, InMemoryCache, HttpLink, Reference } from '@apollo/client'
 import { issuesTypeDefs } from '../queries/issues'
 import { setContext } from '@apollo/client/link/context';
 
@@ -17,7 +17,23 @@ export const getClient = () => {
         }
     });
 
-    const cache = new InMemoryCache();
+    const cache = new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+              node(existingDataFromCache: Reference | undefined, {args, toReference}) {
+                const returnE = existingDataFromCache || toReference({
+                  __typename: 'Issue',
+                  id: args?.id,
+              })
+              console.log("Hiiii")
+              console.log(returnE)
+                  return returnE
+              },
+          }
+        }
+      },
+    });
 
     const client = new ApolloClient({
         link: authLink.concat(httpLink),

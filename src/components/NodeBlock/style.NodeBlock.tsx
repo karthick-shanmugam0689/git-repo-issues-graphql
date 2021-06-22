@@ -6,6 +6,7 @@ export const NodeBlockContainer = styled.div`
     border: 1px solid #191919;
     margin: 0 auto;
     text-align: left;
+    position: relative;
     
     .title {
         font-size: 18px;
@@ -20,5 +21,30 @@ export const NodeBlockContainer = styled.div`
         &.closed {
             color: green;
         }
+    }
+
+    .wrap-lines {
+        margin-bottom: 20px;
+        overflow: hidden;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        font-size: 15px;
+        line-height: 1.4;
+        max-width: 90%;
+        display: block;
+        display: -webkit-box;
+    }
+
+    .to-issue {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .show-more {
+        text-decoration: underline;
+        border: none;
+        background-color: white;
     }
 `
