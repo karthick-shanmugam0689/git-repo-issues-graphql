@@ -3,10 +3,10 @@ import styled from 'styled-components'
 export const IssueDescribeContainer = styled.div`
     .status {
         &.open {
-            color: red;
+            color: ${props => props.theme.open};
         }
         &.closed {
-            color: green;
+            color: ${props => props.theme.closed};
         }
     }
     .body {

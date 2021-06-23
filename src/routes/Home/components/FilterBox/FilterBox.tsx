@@ -40,6 +40,21 @@ const FilterBox = () => {
         })
     }
 
+    const handleClearFilter = () => {
+        setStatus('')
+        setSearchText('')
+        client.writeQuery({
+            query: getFilterOptions,
+            data: {
+                filter: {
+                    searchTerm: '',
+                    status: '',
+                }
+            },
+            broadcast: true
+        })
+    }
+
     return (
         <SearchContainer>
             <div className="filter-box">
@@ -59,6 +74,13 @@ const FilterBox = () => {
             <div className="filter-box">
                 <button onClick={handleFilterButtonClick}>Filter Issues</button>
             </div>
+            {
+                (filter?.searchTerm || filter?.status) && (
+                    <div className="filter-box">
+                        <button onClick={handleClearFilter}>Clear Filters X</button>
+                    </div>
+                )
+            }
         </SearchContainer>
     )
 }

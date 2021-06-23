@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const NodeBlockContainer = styled.div`
     width: 90%;
     padding: 10px;
-    border: 1px solid #191919;
+    border: 1px solid ${props => props.theme.border};
     margin: 0 auto;
     text-align: left;
     position: relative;
@@ -16,10 +16,10 @@ export const NodeBlockContainer = styled.div`
 
     .status {
         &.open {
-            color: red;
+            color: ${props => props.theme.open};
         }
         &.closed {
-            color: green;
+            color: ${props => props.theme.closed};
         }
     }
 
@@ -45,6 +45,6 @@ export const NodeBlockContainer = styled.div`
     .show-more {
         text-decoration: underline;
         border: none;
-        background-color: white;
+        background-color: ${props => props.theme.main};
     }
 `
